@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   margin-top: 2rem;
+  position: relative;
 `;
 export const Header = styled.header`
   display: flex;
@@ -41,7 +42,7 @@ export const SpanList = styled.span`
 export const ImgArrow = styled.img``;
 export const Card = styled.div`
   background: var(--white);
-  box-shadow: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.04));
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.04);
   padding: 16px;
   border-radius: 4px;
   display: flex;

@@ -14,13 +14,17 @@ import {
   Actions,
   BtnDelete,
   ImgIcon,
+  Container,
 } from "./style";
-import { Container } from "../../style";
 
 import arrow from "../../../assets/arrow.svg";
 import edit from "../../../assets/edit.svg";
 import trash from "../../../assets/trash.svg";
-import Input from "../../components/Input/Input";
+import Input from "../../components/Helpers/InputSearch/Input";
+import { Link } from "react-router-dom";
+
+import Loader from "../../components/Helpers/Loading/Loader";
+import Modal from "../../components/Modal/Modal";
 
 const Home = () => {
   return (
@@ -28,7 +32,7 @@ const Home = () => {
       <Input type="text" placeholder="Pesquisar contato..." />
       <Header>
         <TitleHeader>3 Contatos</TitleHeader>
-        <a href="/">Novo contato</a>
+        <Link to="/create">Novo contato</Link>
       </Header>
       <ListContainer>
         <header style={{ marginBottom: "0.8rem" }}>
@@ -46,9 +50,9 @@ const Home = () => {
             <SpanInfo>(51) 99999-9999</SpanInfo>
           </Info>
           <Actions>
-            <a href="/">
+            <Link to="/edit/123">
               <img src={edit} alt="edit" />
-            </a>
+            </Link>
             <BtnDelete type="button">
               <ImgIcon src={trash} alt="delete" />
             </BtnDelete>

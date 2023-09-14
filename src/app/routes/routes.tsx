@@ -1,15 +1,15 @@
-import { Switch, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Home from "../pages/Home/Home";
 import Create from "../pages/Create/Create";
 import Edit from "../pages/EditContact/Edit";
 
 const routes = () => {
   return (
-    <Switch>
-      <Route path="/" exact component={Home} />
-      <Route path="/create" component={Create} />
-      <Route path="/edit/:id" component={Edit} />
-    </Switch>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/create" element={<Create />} />
+      <Route path="/edit/:id" element={<Edit />} />
+    </Routes>
   );
 };
 

@@ -1,7 +1,13 @@
-import React from "react";
+import ContactForm from "../../components/ContactForm/ContactForm";
+import PageHeader from "../../components/Helpers/pageHeader/PageHeader";
 
-const create = () => {
-  return <div>create</div>;
+const Create = () => {
+  return (
+    <>
+      <PageHeader title="Novo contato" />
+      <ContactForm buttonText="Criar contato" />
+    </>
+  );
 };
 
-export default create;
+export default Create;

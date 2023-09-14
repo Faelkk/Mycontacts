@@ -1,7 +1,14 @@
-import React from "react";
+import ContactForm from "../../components/ContactForm/ContactForm";
+
+import PageHeader from "../../components/Helpers/pageHeader/PageHeader";
 
 const Edit = () => {
-  return <div>Testandoaaaaaa</div>;
+  return (
+    <>
+      <PageHeader title="Editar contato" />
+      <ContactForm buttonText="Salvar alterações" />
+    </>
+  );
 };
 
 export default Edit;

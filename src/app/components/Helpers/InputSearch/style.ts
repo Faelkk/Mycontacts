@@ -11,9 +11,8 @@ export const InputForm = styled.input`
   background: var(--white);
   height: 50px;
   border-radius: 20px;
-  box-shadow: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.04));
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.04);
 
-  outline: 0;
   padding: 0 16px;
   &:placeholder {
     color: var(--gray200);

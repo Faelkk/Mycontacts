@@ -22,5 +22,14 @@ export interface TitleModalProps {
   danger?: boolean | string;
 }
 export interface typeError {
-  error?: boolean;
+  error?: string | undefined;
+  maxLength?: string;
+}
+export interface typeTarget {
+  target: EventTarget;
+}
+
+export interface typeErrorHooks {
+  field: string;
+  message: string;
 }

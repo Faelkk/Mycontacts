@@ -11,6 +11,7 @@ export const Select = styled.select`
   font-size: 1rem;
   padding: 0 16px;
   transition: border-color 0.2s ease-in;
+  appearance: none;
   &:focus {
     border-color: var(--mainDefault);
   }

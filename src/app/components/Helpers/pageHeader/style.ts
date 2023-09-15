@@ -7,13 +7,13 @@ export const Container = styled.header`
   }
 `;
 export const ImgBack = styled.img`
-  margin-right: 0.5rem;
   transform: rotate(-90deg);
 `;
 export const SpanBack = styled.span`
   display: flex;
   font-weight: bold;
   color: var(--mainDefault);
+  margin-left: 0.8rem;
 `;
 export const TitleHead = styled.h1`
   font-size: 1.5rem;

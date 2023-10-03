@@ -1,5 +1,5 @@
 import styled, { css, keyframes } from "styled-components";
-import { TitleModalProps, typeIsModalVisible } from "../../../types/type";
+import { IsModalVisible, isInDanger } from "../../../types/type";
 
 const fadeIn = keyframes`
 from {
@@ -36,7 +36,7 @@ to {
   transform:scale(0) }
 `;
 
-export const OverlayWindow = styled.div<typeIsModalVisible>`
+export const OverlayWindow = styled.div<IsModalVisible>`
   background: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(3.5px);
   position: fixed;
@@ -55,7 +55,7 @@ export const OverlayWindow = styled.div<typeIsModalVisible>`
       animation: ${fadeOut} 0.3s forwards;
     `}
 `;
-export const Container = styled.div<typeIsModalVisible>`
+export const Container = styled.div<IsModalVisible>`
   width: 100%;
   max-width: 450px;
   background: var(--white);
@@ -73,7 +73,7 @@ export const Container = styled.div<typeIsModalVisible>`
       animation: ${scaleOut} 0.3s forwards;
     `}
 `;
-export const TitleModal = styled.h1<TitleModalProps>`
+export const TitleModal = styled.h1<isInDanger>`
   font-size: 1.375rem;
   color: ${({ danger }) =>
     danger ? "var(--dangerDefault)" : "var(--boldDefault)"};

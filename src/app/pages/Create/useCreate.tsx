@@ -1,12 +1,13 @@
 import { useRef } from "react";
 import { handleCreateContacts } from "../../../services";
-import { typeRefContact, TypeForm } from "../../../types/type";
+
 import { toast } from "../../Utils/toast";
+import { FormInfo, RefContact } from "../../../types/type";
 
 const useCreate = () => {
-  const contactFormRef = useRef<typeRefContact | null>(null);
+  const contactFormRef = useRef<RefContact | null>(null);
 
-  const handleSubmit = async (formData: TypeForm) => {
+  const handleSubmit = async (formData: FormInfo) => {
     try {
       await handleCreateContacts(formData);
       if (contactFormRef && contactFormRef.current) {

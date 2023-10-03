@@ -1,30 +1,31 @@
 import { ChangeEvent, useMemo, useState } from "react";
 
 import { handleDeleteContactById } from "../../../services";
-import { typeContactsArray } from "../../../types/type";
+
 import { toast } from "../../Utils/toast";
 import useApi from "../../../hooks/useApi";
+import { ContactsArray } from "../../../types/type";
 
 const useHome = () => {
   const [orderBy, setOrderBy] = useState("asc");
   const [searchTerms, setSearchTearms] = useState("");
-  const { contacts, loading, error, FetchContacts, setContacts } =
-    useApi(orderBy);
+  const [contacts, setContacts] = useState<ContactsArray[]>([]);
+  const { loading, error, FetchContacts } = useApi(orderBy);
   const [contactBeingDeleted, setContatBeingDeleted] =
-    useState<typeContactsArray | null>(null);
+    useState<ContactsArray | null>(null);
   const [isLoadingDelete, setIsloadingDelete] = useState(false);
   const [isDeleteModalVisible, setIsDeleteModalVisible] = useState(false);
 
   const filteredContacts = useMemo(
     () =>
-      contacts?.filter((contact) =>
+      contacts?.filter((contact: ContactsArray) =>
         contact.name.toLowerCase().includes(searchTerms.toLowerCase())
       ),
     [contacts, searchTerms]
   );
 
   const handleToggleOrderBy = () => {
-    setOrderBy((prevState) => (prevState === "asc" ? "desc" : "asc"));
+    setOrderBy((prevState: string) => (prevState === "asc" ? "desc" : "asc"));
   };
 
   const handleChangeSearchTerm = (event: ChangeEvent<HTMLInputElement>) => {
@@ -35,7 +36,7 @@ const useHome = () => {
     FetchContacts();
   };
 
-  const handleDeleteClickModal = (contact: typeContactsArray) => {
+  const handleDeleteClickModal = (contact: ContactsArray) => {
     setContatBeingDeleted(contact);
     setIsDeleteModalVisible(true);
   };
@@ -50,8 +51,10 @@ const useHome = () => {
       if (contactBeingDeleted)
         await handleDeleteContactById(contactBeingDeleted.id);
 
-      setContacts((prevState) =>
-        prevState.filter((contact) => contact.id !== contactBeingDeleted?.id)
+      setContacts((prevState: ContactsArray[]) =>
+        prevState?.filter(
+          (contact: ContactsArray) => contact.id !== contactBeingDeleted?.id
+        )
       );
       setIsDeleteModalVisible(!isDeleteModalVisible);
 
@@ -70,6 +73,7 @@ const useHome = () => {
       setIsloadingDelete(false);
     }
   };
+
   return {
     filteredContacts,
     contactBeingDeleted,

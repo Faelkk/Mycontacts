@@ -1,7 +1,7 @@
-import { typeInputHook } from "../../../../types/type";
+import { InputProps } from "../../../../types/type";
 import { InputForm, InputSearchContainer } from "./style";
 
-const Input: React.FC<typeInputHook> = ({
+const Input: React.FC<InputProps> = ({
   type,
   placeholder,
   value,

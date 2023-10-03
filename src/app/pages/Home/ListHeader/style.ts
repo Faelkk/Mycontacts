@@ -1,5 +1,8 @@
 import styled from "styled-components";
-import { typeOrder } from "../../../../types/type";
+
+interface orderIsAscOrDesc {
+  orderby: string;
+}
 
 export const BtnSort = styled.button`
   background: transparent;
@@ -14,7 +17,7 @@ export const SpanList = styled.span`
   color: var(--mainDefault);
 `;
 
-export const ImgArrow = styled.img<typeOrder>`
+export const ImgArrow = styled.img<orderIsAscOrDesc>`
   transform: ${({ orderby }) =>
     orderby === "asc" ? "rotate(180deg)" : "rotate(0)"};
   transition: transform 0.3s ease-in-out;

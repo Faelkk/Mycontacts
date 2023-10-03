@@ -1,11 +1,13 @@
 import React, { memo, useEffect } from "react";
 import { Container } from "./Style";
-import { typeChangeMessage } from "../../../../types/type";
 
 import xCircleIcon from "../../../../assets/x-circle.svg";
 import checkCircleIcon from "../../../../assets/check-circle.svg";
+import { ToastMessageProps } from "../../../../types/type";
 
-const ToastMessage: React.FC<typeChangeMessage> = ({
+[];
+
+const ToastMessage: React.FC<ToastMessageProps> = ({
   messageObject,
   isLeaving,
   onRemoveMessage,
@@ -35,7 +37,7 @@ const ToastMessage: React.FC<typeChangeMessage> = ({
       tabIndex={0}
       role="button"
       isLeaving={isLeaving}
-      ref={animatedRef}
+      ref={animatedRef as HTMLDivElement}
     >
       {type === "danger" && <img src={xCircleIcon} alt="Error" />}
       {type === "success" && <img src={checkCircleIcon} alt="Success" />}

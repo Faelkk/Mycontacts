@@ -3,9 +3,10 @@ import { Container } from "./Style";
 import ToastMessage from "../ToastsMessage/ToastMessage";
 import { eventManager } from "../../../Utils/toast";
 import {
-  typeHandleAddToast,
-  typeRender,
-  typeToastMessage,
+  HandleAddToast,
+  Message,
+  RenderInfo,
+  Toast,
 } from "../../../../types/type";
 import useAnimatedList from "../../../../hooks/useAnimatedList";
 
@@ -13,7 +14,7 @@ const ToastContainer = () => {
   const { setItems, handleRemoveItems, renderList } = useAnimatedList();
 
   useEffect(() => {
-    const handleAddToast = ({ type, text }: typeHandleAddToast) => {
+    const handleAddToast = ({ type, text }: HandleAddToast) => {
       setItems(
         (prevState) =>
           [
@@ -22,7 +23,7 @@ const ToastContainer = () => {
               id: Math.random().toString(),
               message: { type, text, duration: 5000 },
             },
-          ] as typeToastMessage[]
+          ] as Message<Toast>[]
       );
     };
 
@@ -35,13 +36,11 @@ const ToastContainer = () => {
   return (
     <Container>
       {renderList(
-        (message: typeToastMessage, { isLeaving, animatedRef }: typeRender) => {
-          console.log(isLeaving, animatedRef);
-
+        (message: Message<Toast>, { isLeaving, animatedRef }: RenderInfo) => {
           return (
             <ToastMessage
               key={message.id}
-              messageObject={message}
+              messageObject={message as Message<Toast>}
               onRemoveMessage={handleRemoveItems}
               isLeaving={isLeaving}
               animatedRef={animatedRef}

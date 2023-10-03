@@ -1,11 +1,11 @@
 import { useCallback, useState } from "react";
-import { typeErrorHooks } from "../types/type";
+import { ErrorHooks } from "../types/type";
 
 const useError = () => {
-  const [errors, setErrors] = useState<typeErrorHooks[]>([]);
+  const [errors, setErrors] = useState<ErrorHooks[]>([]);
 
   const setError = useCallback(
-    ({ field, message }: typeErrorHooks) => {
+    ({ field, message }: ErrorHooks) => {
       const errorAlreadyExists = errors.find((error) => error.field === field);
       if (errorAlreadyExists) return;
       setErrors((prevState) => [...prevState, { field, message }]);

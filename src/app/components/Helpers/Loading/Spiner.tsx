@@ -1,8 +1,8 @@
 import React from "react";
 import { StyledSpiner } from "./style";
-import { typesSpiner } from "../../../../types/type";
+import { SpinnerProps } from "../../../../types/type";
 
-const Spiner: React.FC<typesSpiner> = ({ size }) => {
+const Spiner: React.FC<SpinnerProps> = ({ size }) => {
   return <StyledSpiner size={size} />;
 };
 

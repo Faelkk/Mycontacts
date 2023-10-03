@@ -2,11 +2,12 @@ import { useEffect, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import UseApi from "../../../hooks/useApi";
 import { handleUpdateContacts } from "../../../services";
-import { typeRefContact, TypeForm } from "../../../types/type";
+
 import { toast } from "../../Utils/toast";
+import { FormInfo, RefContact } from "../../../types/type";
 
 const useEditContact = () => {
-  const contactForm = useRef<typeRefContact | null>(null);
+  const contactForm = useRef<RefContact | null>(null);
 
   const { id } = useParams();
   const { contactById, loading, error, fetchContatById, setContactById } =
@@ -18,7 +19,7 @@ const useEditContact = () => {
     id && fetchContatById(id);
   }, [id]);
 
-  const handleSubmit = async (formData: TypeForm) => {
+  const handleSubmit = async (formData: FormInfo) => {
     try {
       const contact = {
         name: formData.name,

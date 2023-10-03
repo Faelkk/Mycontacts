@@ -1,11 +1,11 @@
 import { createRef, useCallback, useEffect, useRef, useState } from "react";
-import { typeToastMessage } from "../types/type";
+import { Message, Toast } from "../types/type";
 
 const useAnimatedList = () => {
   const [pendingRemoveItemssId, setPendingRemoveItemsId] = useState<string[]>(
     []
   );
-  const [items, setItems] = useState<typeToastMessage[]>([]);
+  const [items, setItems] = useState<Message<Toast>[]>([]);
 
   const animatedRefs = useRef(new Map());
   const animationEndListener = useRef(new Map());

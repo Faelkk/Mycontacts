@@ -1,63 +1,113 @@
-import { ChangeEvent, ReactNode } from "react";
+import { ReactNode } from "react";
 
-export interface typeInputHook {
+export interface Contact {
+  id: string;
+  name: string;
+  email?: string;
+  phone?: string;
+  category_id?: string;
+  category_name?: string;
+}
+export interface ContactsArrayWithCategoryId extends ContactsArray {
+  categoryId: string;
+}
+
+export interface Message<T> {
+  message: T;
+  id: string;
+}
+
+export interface Toast {
   type: string;
-  placeholder: string;
-  value: string;
-  onChange: (value: ChangeEvent<HTMLInputElement>) => void;
+  text: string;
+  duration: number;
 }
 
-export interface TypeHead {
-  title: string;
+export interface RenderInfo {
+  isLeaving: boolean;
+  animatedRef: HTMLDivElement;
 }
-export interface TypeFormGroup {
+
+export interface ContainerToast {
+  type: string;
+  messageObject?: Message<RenderInfo>;
+  id: string;
+}
+
+export interface HandleAddToast {
+  text: string;
+  type: string;
+}
+
+export interface PortalProps {
+  containerId: string;
   children: ReactNode;
+}
+
+export interface ButtonProps {
+  type: string;
+  isLoading?: boolean;
+  disabled?: boolean;
+  children: ReactNode;
+  danger?: boolean;
+  onClick?: () => void;
+}
+
+export interface LoaderProps {
+  isLoading?: boolean;
+}
+
+export interface ErrorInfo {
   error?: string;
-  isloading?: boolean;
-  className?: string;
-}
-export interface typeContactForm {
-  buttonText?: string;
-  onSubmit?: (formData: TypeForm) => void;
-}
-export interface typeDanger {
-  danger: boolean;
-  title: string;
-  children: ReactNode;
-  onCancel: () => void;
-  onConfirm: () => void;
-  isModalVisible: boolean;
-  isLoading: boolean;
-}
-export interface TitleModalProps {
-  danger?: boolean | string;
-  type?: string;
-}
-export interface typeError {
-  error?: string | undefined;
   maxLength?: string;
 }
-export interface typeTarget {
-  target: EventTarget;
-}
 
-export interface typeErrorHooks {
-  field: string;
-  message: string;
-}
-export interface typeOrder {
+export interface OrderInfo {
   orderby: string;
 }
 
-export interface typeLoader {
-  isLoading?: boolean;
+export interface ErrorHooks {
+  field: string;
+  message: string;
 }
-export interface typeErrorIsTrue {
-  justifyContent: string;
-}
-export type typeContacts = typeContactsArray[];
 
-export interface typeContactsArray {
+export interface FormInfo {
+  id?: string;
+  name: string;
+  email?: string;
+  phone?: string;
+  category?: string;
+}
+
+export interface CategoryInfo {
+  id?: string;
+  name: string;
+  email?: string;
+  phone?: string;
+  category_id?: string;
+}
+
+export interface DomainInfo {
+  id?: string;
+  name: string;
+  email?: string;
+  phone?: string;
+  categoryId?: string;
+}
+
+export interface CreateInfo {
+  name: string;
+  email?: string;
+  phone?: string;
+  category_id?: string;
+}
+
+export interface PostInfo {
+  path: string;
+  body: CreateInfo;
+}
+
+export interface ContactsArray {
   id: string;
   name: string;
   email: string;
@@ -65,12 +115,34 @@ export interface typeContactsArray {
   category_id: string;
   category_name: string;
 }
+
 export interface ResultTypeError {
   status: number;
   statusText: string;
 }
 
-export interface TypeContactsById {
+export interface CategoriesFetch {
+  name: string;
+  id: string;
+}
+
+export interface EditsInfo {
+  loading: boolean;
+  contactById: ContactsArray;
+  handleSubmit: (formData: FormInfo) => void;
+  contactForm: RefContact;
+}
+
+export interface IsModalVisible {
+  isLeaving: boolean;
+}
+
+export interface RefContact {
+  setFieldsValue: (contact: FormInfo) => void;
+  resetFields: () => void;
+}
+
+export interface ContactsById {
   id: string | undefined;
   name: string;
   phone: string | undefined;
@@ -80,115 +152,60 @@ export interface TypeContactsById {
 }
 
 export interface ErrorBody {
-  error: string;
+  error?: string;
 }
 
-export interface CategoriesFetch {
-  name: string;
-  id: string;
-}
-export interface typesSpiner {
+export interface SpinnerProps {
   size: number;
 }
-export interface TypeForm {
-  id?: string;
-  name: string;
-  email: string | undefined;
-  phone: string | undefined;
-  category?: string | undefined;
+
+export interface HeadInfo {
+  title: string;
 }
 
-export interface typeCategory {
-  id?: string;
-  name: string;
-  email: string | undefined;
-  phone: string | undefined;
-  category_id?: string | undefined;
-}
-
-export interface typeDomain {
-  id?: string;
-  name: string;
-  email: string | undefined;
-  phone: string | undefined;
-  categoryId?: string | undefined;
-}
-export interface TypeCreate {
-  name: string;
-  email: string | undefined;
-  phone: string | undefined;
-  category_id: string | undefined;
-}
-
-export interface TypePost {
-  path: string;
-  body: TypeCreate;
-}
-export interface TypeButton {
-  type: string;
-  isLoading?: boolean;
-  disabled?: boolean;
+export interface FormGroupProps {
   children: ReactNode;
-  danger?: boolean;
-  onClick?: () => void;
+  error?: string;
+  isloading?: boolean;
+  className?: string;
 }
 
-export interface typeMessageListener {
-  (payload: any): void;
+export interface ContactFormProps {
+  buttonText?: string;
+  onSubmit?: (formData: FormInfo) => void;
 }
 
-export interface typeToast {
+export interface InputProps {
   type: string;
-  text: string;
-  duration: number;
-}
-export interface typeMessage {
-  message: typeToast;
-  id: string;
+  placeholder: string;
+  value: string;
+  onChange: () => void;
 }
 
-export interface typeToastMessage extends typeMessage {
-  onRemoveMessage?: (id: string) => void;
+export interface ModalProps {
+  isLoading: boolean;
+  danger: boolean;
+  title: string;
+  children: React.ReactNode;
+  onCancel: () => void;
+  onConfirm: () => void;
+  isModalVisible: boolean;
 }
 
-export interface typeChangeMessage {
-  messageObject: typeMessage;
+export interface isInDanger {
+  danger: boolean;
+}
+
+export interface ToastMessageProps {
+  messageObject: {
+    message: {
+      type: string;
+      text: string;
+      duration?: number;
+    };
+    id: string;
+  };
   isLeaving: boolean;
   onRemoveMessage?: (id: string) => void;
-  animatedRef: HTMLDivElement;
-}
-
-export interface typeContainerToast {
-  type: string;
-  messageObject?: typeChangeMessage;
-  id: string;
-}
-
-export interface typeHandleAddToast {
-  text: string;
-  type: string;
-}
-
-export interface typeRefContact {
-  setFieldsValue: (contact: TypeForm) => void;
-  resetFields: () => void;
-}
-
-export interface PortalProps {
-  containerId: string;
-  children: ReactNode;
-}
-export interface TypeEdits {
-  loading: boolean;
-  contactById: typeContactsArray | undefined;
-  handleSubmit: (formData: TypeForm) => void;
-  contactForm: typeRefContact;
-}
-export interface typeIsModalVisible {
-  isLeaving: boolean;
-}
-
-export interface typeRender {
-  isLeaving: boolean;
-  animatedRef: HTMLDivElement;
+  animatedRef?: HTMLDivElement;
 }

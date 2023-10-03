@@ -1,7 +1,10 @@
 import styled from "styled-components";
-import { typeErrorIsTrue } from "../../../../../types/type";
 
-export const Header = styled.header<typeErrorIsTrue>`
+interface isErrorTrue {
+  justifyContent: string;
+}
+
+export const Header = styled.header<isErrorTrue>`
   display: flex;
   align-items: center;
   justify-content: ${({ justifyContent }) => justifyContent};

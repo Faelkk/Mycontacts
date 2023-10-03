@@ -10,6 +10,7 @@ import ContactNotFound from "./components/ContactNotFound/ContactNotFound";
 import ListHeadersHome from "./ListHeader/ListHeader";
 import CardCreate from "./components/Card/CardCreate";
 import useHome from "./useHome";
+import { ContactsArray } from "../../../types/type";
 
 const Home = () => {
   const {
@@ -60,7 +61,7 @@ const Home = () => {
           )}
 
           {filteredContacts &&
-            filteredContacts.map((contact) => (
+            filteredContacts.map((contact: ContactsArray) => (
               <CardCreate
                 key={contact.id}
                 contact={contact}

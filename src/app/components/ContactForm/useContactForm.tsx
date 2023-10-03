@@ -1,9 +1,9 @@
 import { ChangeEvent, FormEvent, useImperativeHandle, useState } from "react";
-import { typeDomain } from "../../../types/type";
 import ValidateEmail from "../../Utils/ValidateEmail";
 import formatPhone from "../../Utils/formatPhone";
 import useError from "../../../hooks/useError";
 import useApi from "../../../hooks/useApi";
+import { ContactsArrayWithCategoryId } from "../../../types/type";
 
 const useContactForm = (onSubmit: any, ref: any) => {
   const { categorysFetch, loading } = useApi();
@@ -50,7 +50,7 @@ const useContactForm = (onSubmit: any, ref: any) => {
   };
 
   useImperativeHandle(ref, () => ({
-    setFieldsValue: (contact: typeDomain) => {
+    setFieldsValue: (contact: ContactsArrayWithCategoryId) => {
       setName(contact.name ?? "");
       setEmail(contact.email ?? "");
       setPhone(formatPhone(contact.phone ?? ""));

@@ -1,9 +1,10 @@
 import React from "react";
 import { StyledButton } from "./Style";
-import { TypeButton } from "../../../../types/type";
-import Spiner from "../Loading/Spiner";
 
-const Button: React.FC<TypeButton> = ({
+import Spiner from "../Loading/Spiner";
+import { ButtonProps } from "../../../../types/type";
+
+const Button: React.FC<ButtonProps> = ({
   type,
   disabled,
   isLoading,

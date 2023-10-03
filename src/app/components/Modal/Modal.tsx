@@ -1,11 +1,12 @@
 import React from "react";
 import { Container, FooterModal, OverlayWindow, TitleModal } from "./style";
 import Button from "../Helpers/Button/Style";
-import { typeDanger } from "../../../types/type";
+
 import ReactPortal from "../ReactPortal/ReactPortal";
 import useAnimation from "../../../hooks/useAnimation";
+import { ModalProps } from "../../../types/type";
 
-const Modal: React.FC<typeDanger> = ({
+const Modal: React.FC<ModalProps> = ({
   isLoading,
   danger,
   title,

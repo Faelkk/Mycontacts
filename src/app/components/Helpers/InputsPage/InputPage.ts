@@ -1,7 +1,11 @@
 import styled, { css } from "styled-components";
-import { typeError } from "../../../../types/type";
 
-export const Input = styled.input<typeError>`
+interface InputProps {
+  error?: string | undefined;
+  maxLength?: string;
+}
+
+export const Input = styled.input<InputProps>`
   width: 100%;
   background: var(--white);
   border: 2px solid var(--white);

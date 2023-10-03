@@ -1,8 +1,9 @@
 import styled, { css } from "styled-components";
-import { TitleModalProps } from "../../../../types/type";
-import Button from "./Button";
 
-export const StyledButton = styled.button<TitleModalProps>`
+import Button from "./Button";
+import { ButtonProps } from "../../../../types/type";
+
+export const StyledButton = styled.button<ButtonProps>`
   display: flex;
   align-items: center;
   justify-content: center;

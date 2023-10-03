@@ -1,4 +1,3 @@
-import { typeContactForm } from "../../../types/type";
 import { Input } from "../Helpers/InputsPage/InputPage";
 import { Select } from "../Helpers/Select/Select";
 import { ButtonContainer, Form } from "./style";
@@ -8,9 +7,10 @@ import Button from "../Helpers/Button/Style";
 
 import useContactForm from "./useContactForm";
 import { forwardRef } from "react";
+import { ContactFormProps } from "../../../types/type";
 
 const ContactForm = forwardRef(
-  ({ buttonText, onSubmit }: typeContactForm, ref) => {
+  ({ buttonText, onSubmit }: ContactFormProps, ref) => {
     const {
       name,
       phone,

@@ -1,9 +1,12 @@
-import { TypeFormGroup } from "../../../types/type";
-
+import { FormGroupProps } from "../../../types/type";
 import Spiner from "../Helpers/Loading/Spiner";
 import { Container } from "./style";
 
-const FormGroup: React.FC<TypeFormGroup> = ({ children, error, isloading }) => {
+const FormGroup: React.FC<FormGroupProps> = ({
+  children,
+  error,
+  isloading,
+}) => {
   return (
     <Container>
       <div className="form-item">

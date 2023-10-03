@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 
 import arrow from "../../../../assets/arrow.svg";
 import { ImgBack } from "./style";
-import { TypeHead } from "../../../../types/type";
+import { HeadInfo } from "../../../../types/type";
 
-const PageHeader: React.FC<TypeHead> = ({ title }) => {
+const PageHeader: React.FC<HeadInfo> = ({ title }) => {
   return (
     <Container>
       <Link to="/">

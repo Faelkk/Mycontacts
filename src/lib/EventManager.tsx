@@ -1,4 +1,6 @@
-import { typeMessageListener } from "../types/type";
+export interface typeMessageListener {
+  (payload: any): void;
+}
 
 export default class EventManager {
   private listeners: { [event: string]: typeMessageListener[] } = {};

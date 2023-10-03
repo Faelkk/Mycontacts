@@ -1,9 +1,4 @@
-import {
-  CategoriesFetch,
-  TypeCreate,
-  TypeForm,
-  typeContactsArray,
-} from "../types/type";
+import { CategoriesFetch, ContactsArray, CreateInfo } from "../types/type";
 import { categoryMapper } from "./mappers/CategoryMapper";
 
 import ContactMaper from "./mappers/ContactMaper";
@@ -14,7 +9,7 @@ export const handleGetContacts = async (orderBy = "asc") => {
 
   const contacts = await GET(`/contacts?orderBy=${orderBy}`);
 
-  return contacts.map((contact: typeContactsArray) => {
+  return contacts.map((contact: ContactsArray) => {
     return ContactMaper.toDomain(contact);
   });
 };
@@ -31,13 +26,13 @@ export const handleDeleteContactById = (id: string) => {
 
   return DELETE(`/contacts/${id}`);
 };
-export const handleUpdateContacts = (id: string, contact: TypeCreate) => {
+export const handleUpdateContacts = (id: string, contact: CreateInfo) => {
   const { PUT } = httpClient();
 
   return PUT(`/contacts/${id}`, { body: contact });
 };
 
-export const handleCreateContacts = (contact: TypeForm) => {
+export const handleCreateContacts = (contact: CreateInfo) => {
   const body = ContactMaper.toPersistence(contact);
   const { POST } = httpClient();
 

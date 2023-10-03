@@ -1,5 +1,5 @@
 import styled, { keyframes } from "styled-components";
-import { typesSpiner } from "../../../../types/type";
+import { SpinnerProps } from "../../../../types/type";
 
 export const load = keyframes`
   0% {
@@ -47,7 +47,7 @@ export const Overlay = styled.div`
   justify-content: center;
 `;
 
-export const StyledSpiner = styled.div<typesSpiner>`
+export const StyledSpiner = styled.div<SpinnerProps>`
   color: var(--mainDefault);
   font-size: ${({ size }) => `${size}px`};
   width: 1em;

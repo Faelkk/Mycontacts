@@ -1,7 +1,7 @@
-import { TypeForm, typeCategory } from "../../types/type";
+import { Contact, FormInfo } from "../../types/type";
 
 class ContactMapper {
-  toPersistence(domainContact: TypeForm) {
+  toPersistence(domainContact: FormInfo) {
     return {
       id: domainContact.id,
       name: domainContact.name,
@@ -10,7 +10,7 @@ class ContactMapper {
       category_id: domainContact.category,
     };
   }
-  toDomain(persitenceContact: typeCategory) {
+  toDomain(persitenceContact: Contact) {
     return {
       id: persitenceContact.id,
       name: persitenceContact.name,

@@ -8,7 +8,7 @@ const Edit = () => {
 
   return (
     <>
-      <Loader isLoading={loading} />
+      <Loader />
       <PageHeader
         title={`${loading ? "carregando contato..." : "editar contato"} ${
           contactById ? contactById.name : ""

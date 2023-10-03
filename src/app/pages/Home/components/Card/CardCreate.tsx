@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-import { typeContactsArray } from "../../../../../types/type";
+import { ContactsArray } from "../../../../../types/type";
 import { FC } from "react";
 
 import edit from "../../../../../assets/edit.svg";
@@ -18,8 +18,8 @@ import {
 } from "./style";
 
 interface typeCard {
-  contact: typeContactsArray;
-  handleClickDeleteModal: (contact: typeContactsArray) => void;
+  contact: ContactsArray;
+  handleClickDeleteModal: (contact: ContactsArray) => void;
 }
 const CardCreate: FC<typeCard> = ({ contact, handleClickDeleteModal }) => {
   return (

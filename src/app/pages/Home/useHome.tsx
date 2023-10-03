@@ -9,8 +9,8 @@ import { ContactsArray } from "../../../types/type";
 const useHome = () => {
   const [orderBy, setOrderBy] = useState("asc");
   const [searchTerms, setSearchTearms] = useState("");
-  const [contacts, setContacts] = useState<ContactsArray[]>([]);
-  const { loading, error, FetchContacts } = useApi(orderBy);
+  const { contacts, loading, error, FetchContacts, setContacts } =
+    useApi(orderBy);
   const [contactBeingDeleted, setContatBeingDeleted] =
     useState<ContactsArray | null>(null);
   const [isLoadingDelete, setIsloadingDelete] = useState(false);
@@ -51,8 +51,8 @@ const useHome = () => {
       if (contactBeingDeleted)
         await handleDeleteContactById(contactBeingDeleted.id);
 
-      setContacts((prevState: ContactsArray[]) =>
-        prevState?.filter(
+      setContacts((prevState) =>
+        prevState.filter(
           (contact: ContactsArray) => contact.id !== contactBeingDeleted?.id
         )
       );

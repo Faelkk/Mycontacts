@@ -1,5 +1,9 @@
 import { useEffect, useState } from "react";
-import { CategoriesFetch, ContactsArrayWithCategoryId } from "../types/type";
+import {
+  CategoriesFetch,
+  ContactsArrayWithCategoryId,
+  DomainInfo,
+} from "../types/type";
 
 import {
   HandleGetCategories,
@@ -7,19 +11,10 @@ import {
   handleGetContacts,
 } from "../services";
 
-export interface ArrayContactsById {
-  id: string;
-  name: string;
-  phone: string | undefined;
-  email: string | undefined;
-  categoryId: string | undefined;
-  category_name?: string;
-}
-
 const useApi = (orderBy?: string) => {
   const [contacts, setContacts] = useState<ContactsArrayWithCategoryId[]>([]);
   const [categorysFetch, setCategoryFetch] = useState<CategoriesFetch[]>([]);
-  const [contactById, setContactById] = useState<ArrayContactsById>();
+  const [contactById, setContactById] = useState<DomainInfo>();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
@@ -44,6 +39,7 @@ const useApi = (orderBy?: string) => {
 
     try {
       const contactForm = await handleGetContactById(id);
+
       setContactById(contactForm);
     } catch (err) {
       setError(true);

@@ -22,4 +22,10 @@ export const Input = styled.input<typeError>`
       color: var(--dangerDefault);
       border-color: var(--dangerDefault) !important;
     `}
+
+  &[disabled] {
+    background: var(--gray200);
+    border-color: var(--gray200);
+    color: var(--white);
+  }
 `;

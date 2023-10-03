@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import arrow from "../../../../assets/arrow.svg";
 import { ImgBack } from "./style";
 import { TypeHead } from "../../../../types/type";
+
 const PageHeader: React.FC<TypeHead> = ({ title }) => {
   return (
     <Container>

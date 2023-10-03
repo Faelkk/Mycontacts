@@ -1,0 +1,47 @@
+import React, { memo, useEffect } from "react";
+import { Container } from "./Style";
+import { typeChangeMessage } from "../../../../types/type";
+
+import xCircleIcon from "../../../../assets/x-circle.svg";
+import checkCircleIcon from "../../../../assets/check-circle.svg";
+
+const ToastMessage: React.FC<typeChangeMessage> = ({
+  messageObject,
+  isLeaving,
+  onRemoveMessage,
+  animatedRef,
+}) => {
+  useEffect(() => {
+    const messageTimeout = setTimeout(() => {
+      onRemoveMessage && onRemoveMessage(messageObject.id);
+    }, messageObject.message.duration || 7000);
+
+    return () => {
+      clearTimeout(messageTimeout);
+    };
+  }, [messageObject, onRemoveMessage]);
+
+  function handleRemoveToast() {
+    onRemoveMessage && onRemoveMessage(messageObject.id);
+  }
+
+  const { type, text } = messageObject.message;
+
+  return (
+    <Container
+      type={type}
+      onClick={handleRemoveToast}
+      id={messageObject.id}
+      tabIndex={0}
+      role="button"
+      isLeaving={isLeaving}
+      ref={animatedRef}
+    >
+      {type === "danger" && <img src={xCircleIcon} alt="Error" />}
+      {type === "success" && <img src={checkCircleIcon} alt="Success" />}
+      <span>{text}</span>
+    </Container>
+  );
+};
+
+export default memo(ToastMessage);

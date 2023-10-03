@@ -1,16 +1,22 @@
-import ReactDOM from "react-dom";
 import { Overlay } from "./style";
 
+import Spiner from "./Spiner";
+import ReactPortal from "../../ReactPortal/ReactPortal";
+import UseHome from "../../../pages/Home/useHome";
+
 const Loader = () => {
-  const LoaderRoot = document.getElementById("loader-root");
-  return LoaderRoot
-    ? ReactDOM.createPortal(
+  const { loading } = UseHome();
+  if (!loading) return null;
+
+  return (
+    <>
+      <ReactPortal containerId="loader-root">
         <Overlay>
-          <div className="loader"></div>
-        </Overlay>,
-        LoaderRoot
-      )
-    : null;
+          <Spiner size={90} />
+        </Overlay>
+      </ReactPortal>
+    </>
+  );
 };
 
 export default Loader;

@@ -1,24 +1,29 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { typeErrorHooks } from "../types/type";
 
-const UseError = () => {
+const useError = () => {
   const [errors, setErrors] = useState<typeErrorHooks[]>([]);
-  const setError = ({ field, message }: typeErrorHooks) => {
-    const errorAlreadyExists = errors.find((error) => error.field === field);
-    if (errorAlreadyExists) return;
-    setErrors((prevState) => [...prevState, { field, message }]);
-  };
 
-  const removeError = (fieldName: string) => {
+  const setError = useCallback(
+    ({ field, message }: typeErrorHooks) => {
+      const errorAlreadyExists = errors.find((error) => error.field === field);
+      if (errorAlreadyExists) return;
+      setErrors((prevState) => [...prevState, { field, message }]);
+    },
+    [errors]
+  );
+
+  const removeError = useCallback((fieldName: string) => {
     setErrors((prevState) =>
       prevState.filter((error) => error.field !== fieldName)
     );
-  };
+  }, []);
 
-  const getErrorMessageByFieldName = (fieldName: string) => {
+  const getErrorMessageByFieldName = useCallback((fieldName: string) => {
     return errors.find((error) => error.field === fieldName)?.message;
-  };
+  }, []);
+
   return { setError, removeError, getErrorMessageByFieldName, errors };
 };
 
-export default UseError;
+export default useError;

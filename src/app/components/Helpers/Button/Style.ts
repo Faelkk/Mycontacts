@@ -1,7 +1,11 @@
 import styled, { css } from "styled-components";
 import { TitleModalProps } from "../../../../types/type";
+import Button from "./Button";
 
-export const Button = styled.button<TitleModalProps>`
+export const StyledButton = styled.button<TitleModalProps>`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: 52px;
   border: none;
   padding: 0 16px;
@@ -19,8 +23,8 @@ export const Button = styled.button<TitleModalProps>`
     background: var(--mainDark);
   }
   &[disabled] {
-    background: #ccc;
-    cursor: default;
+    background: #ccc !important;
+    cursor: default !important;
   }
   ${({ danger }) =>
     danger &&
@@ -35,3 +39,4 @@ export const Button = styled.button<TitleModalProps>`
       }
     `}
 `;
+export default Button;

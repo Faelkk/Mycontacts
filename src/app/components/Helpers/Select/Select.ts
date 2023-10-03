@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const Select = styled.select`
+  position: relative;
   width: 100%;
   background: var(--white);
   border: 2px solid var(--white);
@@ -12,7 +13,14 @@ export const Select = styled.select`
   padding: 0 16px;
   transition: border-color 0.2s ease-in;
   appearance: none;
+
   &:focus {
     border-color: var(--mainDefault);
+  }
+  &[disabled] {
+    background: var(--gray200);
+    border-color: var(--gray200);
+
+    opacity: 1;
   }
 `;

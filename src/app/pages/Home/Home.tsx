@@ -1,64 +1,74 @@
-import {
-  Header,
-  TitleHeader,
-  ListContainer,
-  BtnSort,
-  SpanList,
-  ImgArrow,
-  Card,
-  Info,
-  ContactName,
-  SpanName,
-  SpanCategory,
-  SpanInfo,
-  Actions,
-  BtnDelete,
-  ImgIcon,
-  Container,
-} from "./style";
-
-import arrow from "../../../assets/arrow.svg";
-import edit from "../../../assets/edit.svg";
-import trash from "../../../assets/trash.svg";
-import Input from "../../components/Helpers/InputSearch/Input";
-import { Link } from "react-router-dom";
-
 import Loader from "../../components/Helpers/Loading/Loader";
 import Modal from "../../components/Modal/Modal";
+import { Container } from "./style";
+import { ContentText } from "../../components/Modal/style";
+import HeaderHome from "./components/Header/Header";
+import InputSearch from "./components/InputSearch/InputSearch";
+import ErrorStatus from "./components/ErrorStatus/ErrorStatus";
+import EmptyList from "./components/EmptyList/EmptyList";
+import ContactNotFound from "./components/ContactNotFound/ContactNotFound";
+import ListHeadersHome from "./ListHeader/ListHeader";
+import CardCreate from "./components/Card/CardCreate";
+import useHome from "./useHome";
 
 const Home = () => {
+  const {
+    filteredContacts,
+    contactBeingDeleted,
+    isDeleteModalVisible,
+    contacts,
+    loading,
+    error,
+    isLoadingDelete,
+    handleClickDeleteModal,
+    handleConfirmDeleteClick,
+  } = useHome();
+
   return (
     <Container>
-      <Input type="text" placeholder="Pesquisar contato..." />
-      <Header>
-        <TitleHeader>3 Contatos</TitleHeader>
-        <Link to="/create">Novo contato</Link>
-      </Header>
-      <ListContainer>
-        <header style={{ marginBottom: "0.8rem" }}>
-          <BtnSort type="button">
-            <SpanList> Nome</SpanList> <ImgArrow src={arrow} alt="arrow" />
-          </BtnSort>
-        </header>
-        <Card>
-          <Info>
-            <ContactName>
-              <SpanName>rafael achtenberg</SpanName>
-              <SpanCategory>instagram</SpanCategory>
-            </ContactName>
-            <SpanInfo>rafael@devacademy.com.br</SpanInfo>
-            <SpanInfo>(51) 99999-9999</SpanInfo>
-          </Info>
-          <Actions>
-            <Link to="/edit/123">
-              <img src={edit} alt="edit" />
-            </Link>
-            <BtnDelete type="button">
-              <ImgIcon src={trash} alt="delete" />
-            </BtnDelete>
-          </Actions>
-        </Card>
-      </ListContainer>
+      <Loader />
+
+      <Modal
+        isLoading={isLoadingDelete}
+        danger
+        title={contactBeingDeleted ? contactBeingDeleted.name : ""}
+        onCancel={() => handleClickDeleteModal()}
+        onConfirm={() => handleConfirmDeleteClick()}
+        isModalVisible={isDeleteModalVisible}
+      >
+        <div className="modal-body">
+          <ContentText>Essa ação não poderá ser desfeita!</ContentText>
+        </div>
+      </Modal>
+
+      <InputSearch />
+
+      <HeaderHome />
+
+      {error && <ErrorStatus />}
+
+      {!error && (
+        <>
+          {contacts?.length < 1 && !loading && <EmptyList />}
+
+          {contacts.length > 0 && filteredContacts.length < 1 && (
+            <ContactNotFound />
+          )}
+
+          {filteredContacts && filteredContacts.length > 0 && (
+            <ListHeadersHome />
+          )}
+
+          {filteredContacts &&
+            filteredContacts.map((contact) => (
+              <CardCreate
+                key={contact.id}
+                contact={contact}
+                handleClickDeleteModal={handleClickDeleteModal}
+              />
+            ))}
+        </>
+      )}
     </Container>
   );
 };

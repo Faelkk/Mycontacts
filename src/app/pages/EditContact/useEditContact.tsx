@@ -10,27 +10,32 @@ const useEditContact = () => {
   const contactForm = useRef<RefContact | null>(null);
 
   const { id } = useParams();
-  const { contactById, loading, error, fetchContatById, setContactById } =
+  const { contactById, loading, error,  fetchContactById, setContactById } =
     UseApi();
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    id && fetchContatById(id);
-  }, [id]);
+    id && fetchContactById(id);
 
+  }, []);
+  
   const handleSubmit = async (formData: FormInfo) => {
     try {
       const contact = {
         name: formData.name,
         phone: formData.phone,
         email: formData.email,
-        category_id: formData.category,
+        categoryId: formData.category,
       };
+      
+      
 
       if (id) {
         const contactData = await handleUpdateContacts(id, contact);
         setContactById(contactData);
+     
+        
       }
 
       toast({
@@ -58,6 +63,8 @@ const useEditContact = () => {
 
   if (contactById && contactForm.current) {
     contactForm.current.setFieldsValue(contactById);
+
+    
   }
 
   return {

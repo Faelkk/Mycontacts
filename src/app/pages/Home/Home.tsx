@@ -21,10 +21,14 @@ const Home = () => {
     loading,
     error,
     isLoadingDelete,
+    handleCancelClickModal,
     handleClickDeleteModal,
     handleConfirmDeleteClick,
   } = useHome();
 
+
+
+  
   return (
     <Container>
       <Loader />
@@ -33,9 +37,9 @@ const Home = () => {
         isLoading={isLoadingDelete}
         danger
         title={contactBeingDeleted ? contactBeingDeleted.name : ""}
-        onCancel={() => handleClickDeleteModal()}
+        onCancel={() => handleCancelClickModal()}
         onConfirm={() => handleConfirmDeleteClick()}
-        isModalVisible={isDeleteModalVisible}
+        isModalVisible={isDeleteModalVisible} 
       >
         <div className="modal-body">
           <ContentText>Essa ação não poderá ser desfeita!</ContentText>
@@ -48,9 +52,11 @@ const Home = () => {
 
       {error && <ErrorStatus />}
 
-      {!error && (
+      
         <>
-          {contacts?.length < 1 && !loading && <EmptyList />}
+        
+        {!loading && contacts?.length > 1 && <EmptyList />}
+
 
           {contacts.length > 0 && filteredContacts.length < 1 && (
             <ContactNotFound />
@@ -65,11 +71,11 @@ const Home = () => {
               <CardCreate
                 key={contact.id}
                 contact={contact}
-                handleClickDeleteModal={handleClickDeleteModal}
+                handleClickDeleteModal={() => handleClickDeleteModal(contact)}
               />
             ))}
         </>
-      )}
+      
     </Container>
   );
 };

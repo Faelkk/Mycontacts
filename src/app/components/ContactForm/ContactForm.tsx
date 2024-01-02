@@ -11,12 +11,13 @@ import { ContactFormProps } from "../../../types/type";
 
 const ContactForm = forwardRef(
   ({ buttonText, onSubmit }: ContactFormProps, ref) => {
+
     const {
       name,
       phone,
       email,
       category,
-      categorysFetch,
+      categoryFetch,
       loading,
       isSubmitting,
       isFormValid,
@@ -27,6 +28,7 @@ const ContactForm = forwardRef(
       handlePhoneChange,
       handleSubmit,
     } = useContactForm(onSubmit, ref);
+    
 
     return (
       <Form onSubmit={handleSubmit} noValidate>
@@ -69,10 +71,12 @@ const ContactForm = forwardRef(
             disabled={loading || isSubmitting}
           >
             <option value="">Sem categoria</option>
-            {categorysFetch.map((categoria) => {
+            {categoryFetch.map((category) => {
+         
+              
               return (
-                <option value={categoria.id} key={categoria.id}>
-                  {categoria.name}
+                <option value={category.id} key={category.id}>
+                  {category.name}
                 </option>
               );
             })}

@@ -8,10 +8,10 @@ import { ContactsArray } from "../../../types/type";
 
 const useHome = () => {
   const [orderBy, setOrderBy] = useState("asc");
-  const [searchTerms, setSearchTearms] = useState("");
+  const [searchTerms, setSearchTerms] = useState("");
   const { contacts, loading, error, FetchContacts, setContacts } =
     useApi(orderBy);
-  const [contactBeingDeleted, setContatBeingDeleted] =
+  const [contactBeingDeleted, setContactBeingDeleted] =
     useState<ContactsArray | null>(null);
   const [isLoadingDelete, setIsloadingDelete] = useState(false);
   const [isDeleteModalVisible, setIsDeleteModalVisible] = useState(false);
@@ -29,19 +29,20 @@ const useHome = () => {
   };
 
   const handleChangeSearchTerm = (event: ChangeEvent<HTMLInputElement>) => {
-    setSearchTearms(event.target.value);
+    setSearchTerms(event.target.value);
   };
 
   const handleTryAgain = () => {
     FetchContacts();
   };
 
-  const handleDeleteClickModal = (contact: ContactsArray) => {
-    setContatBeingDeleted(contact);
+  const handleCancelClickModal = () => {
     setIsDeleteModalVisible(true);
+    setContactBeingDeleted(null)
   };
 
-  const handleClickDeleteModal = () => {
+  const handleClickDeleteModal = (contact: ContactsArray) => {
+    setContactBeingDeleted(contact);
     setIsDeleteModalVisible(!isDeleteModalVisible);
   };
 
@@ -87,7 +88,7 @@ const useHome = () => {
     handleClickDeleteModal,
     handleChangeSearchTerm,
     handleTryAgain,
-    handleDeleteClickModal,
+    handleCancelClickModal,
     handleConfirmDeleteClick,
     handleToggleOrderBy,
   };

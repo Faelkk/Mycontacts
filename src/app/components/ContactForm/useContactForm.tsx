@@ -1,12 +1,13 @@
 import { ChangeEvent, FormEvent, useImperativeHandle, useState } from "react";
 import ValidateEmail from "../../Utils/ValidateEmail";
 import formatPhone from "../../Utils/formatPhone";
-import useError from "../../../hooks/useError";
+
 import useApi from "../../../hooks/useApi";
 import { ContactsArrayWithCategoryId } from "../../../types/type";
+import useError from "../../../hooks/UseError";
 
 const useContactForm = (onSubmit: any, ref: any) => {
-  const { categorysFetch, loading } = useApi();
+  const { categoryFetch, loading } = useApi();
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -46,25 +47,29 @@ const useContactForm = (onSubmit: any, ref: any) => {
     event.preventDefault();
     setIsSubmitting(true);
     onSubmit && (await onSubmit({ name, email, phone, category }));
+   
+    
     setIsSubmitting(false);
   };
 
-  useImperativeHandle(ref, () => ({
-    setFieldsValue: (contact: ContactsArrayWithCategoryId) => {
-      setName(contact.name ?? "");
-      setEmail(contact.email ?? "");
-      setPhone(formatPhone(contact.phone ?? ""));
-      if (contact.categoryId !== undefined && contact.categoryId !== null) {
-        setCategory(contact.categoryId);
-      }
-    },
-    resetFields: () => {
-      setName("");
-      setEmail("");
-      setPhone("");
-      setCategory("");
-    },
-  }));
+useImperativeHandle(ref, () => ({
+  setFieldsValue: (contact: ContactsArrayWithCategoryId) => {
+
+    
+    setName(contact.name ?? "");
+    setEmail(contact.email ?? "");
+    setPhone(formatPhone(contact.phone ?? ""));
+    if (contact.categoryId !== undefined && contact.categoryId !== null) {
+      setCategory(contact.categoryId);
+    }
+  },
+  resetFields: () => {
+    setName("");
+    setEmail("");
+    setPhone("");
+    setCategory("");
+  },
+}));
 
   const isFormValid = name && errors.length === 0;
 
@@ -73,7 +78,7 @@ const useContactForm = (onSubmit: any, ref: any) => {
     phone,
     email,
     category,
-    categorysFetch,
+    categoryFetch,
     loading,
     isSubmitting,
     isFormValid,

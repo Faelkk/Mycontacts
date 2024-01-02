@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import {
   CategoriesFetch,
   ContactsArrayWithCategoryId,
@@ -13,12 +13,12 @@ import {
 
 const useApi = (orderBy?: string) => {
   const [contacts, setContacts] = useState<ContactsArrayWithCategoryId[]>([]);
-  const [categorysFetch, setCategoryFetch] = useState<CategoriesFetch[]>([]);
+  const [categoryFetch, setCategoryFetch] = useState<CategoriesFetch[]>([]);
   const [contactById, setContactById] = useState<DomainInfo>();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
-  const FetchContacts = async () => {
+  const FetchContacts = useCallback(async () => {
     setLoading(true);
     setError(false);
 
@@ -31,9 +31,11 @@ const useApi = (orderBy?: string) => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [orderBy]);
 
-  const fetchContatById = async (id: string) => {
+
+  const fetchContactById = async (id: string) => {
+
     setLoading(true);
     setError(false);
 
@@ -49,6 +51,8 @@ const useApi = (orderBy?: string) => {
   };
 
   const FetchCategories = async () => {
+
+    
     setLoading(true);
     setError(false);
 
@@ -70,13 +74,13 @@ const useApi = (orderBy?: string) => {
   return {
     contacts,
     contactById,
-    categorysFetch,
+    categoryFetch,
     loading,
     error,
     setContacts,
     setContactById,
     FetchContacts,
-    fetchContatById,
+    fetchContactById,
   };
 };
 

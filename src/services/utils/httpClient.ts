@@ -1,8 +1,12 @@
 import Delay from "../../app/Utils/Delay";
 import APIError from "../../errors/APIErrors";
 
+
+
+
+
 const HttpClient = () => {
-  const baseUrl = `http://localhost:5000`;
+  const baseUrl = import.meta.env.VITE_URL_APIMYCONTACTS;
 
   const GET = async (path: string) => {
     return makeRequest(path, {

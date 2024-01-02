@@ -5,8 +5,8 @@ export interface Contact {
   name: string;
   email?: string;
   phone?: string;
-  category_id?: string;
-  category_name?: string;
+  categoryId?: string;
+
 }
 export interface ContactsArrayWithCategoryId extends ContactsArray {
   categoryId: string;

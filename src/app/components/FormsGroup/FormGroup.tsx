@@ -1,5 +1,7 @@
 import { FormGroupProps } from "../../../types/type";
-import Spiner from "../Helpers/Loading/Spiner";
+import Spinner from "../Helpers/Loading/Spinner";
+
+
 import { Container } from "./style";
 
 const FormGroup: React.FC<FormGroupProps> = ({
@@ -13,7 +15,7 @@ const FormGroup: React.FC<FormGroupProps> = ({
         {children}
         {isloading && (
           <div className="loader">
-            <Spiner size={16} />
+            <Spinner size={16} />
           </div>
         )}
       </div>

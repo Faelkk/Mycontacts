@@ -8,16 +8,16 @@ const HeaderHome = () => {
 
   const alignment = error
     ? "flex-end"
-    : contacts.length > 0
+    : contacts && contacts.length > 0
     ? "space-between"
     : "center";
 
   return (
     <Header justifyContent={alignment}>
-      {!error && contacts.length > 0 && (
+      {!error && contacts && contacts.length > 0 && (
         <TitleHeader>
-          {filteredContacts.length}
-          {filteredContacts.length === 1 ? " contato" : " contatos"}
+          {filteredContacts?.length}
+          {filteredContacts?.length === 1 ? " contato" : " contatos"}
         </TitleHeader>
       )}
       <Link to="/create">Novo contato</Link>

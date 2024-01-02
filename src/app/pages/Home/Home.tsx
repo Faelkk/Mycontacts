@@ -26,12 +26,10 @@ const Home = () => {
     handleConfirmDeleteClick,
   } = useHome();
 
-
-
   
   return (
     <Container>
-      <Loader />
+      <Loader loading={loading}/>
 
       <Modal
         isLoading={isLoadingDelete}
@@ -53,12 +51,12 @@ const Home = () => {
       {error && <ErrorStatus />}
 
       
-        <>
         
-        {!loading && contacts?.length > 1 && <EmptyList />}
+        {contacts && <> 
+          {!loading && contacts?.length < 1 && <EmptyList />}
 
 
-          {contacts.length > 0 && filteredContacts.length < 1 && (
+          {contacts.length > 0 &&  filteredContacts && filteredContacts.length < 1 && (
             <ContactNotFound />
           )}
 
@@ -73,8 +71,9 @@ const Home = () => {
                 contact={contact}
                 handleClickDeleteModal={() => handleClickDeleteModal(contact)}
               />
-            ))}
-        </>
+            ))}</>}
+      
+        
       
     </Container>
   );

@@ -1,18 +1,21 @@
 import { Overlay } from "./style";
 
-import Spiner from "./Spiner";
-import ReactPortal from "../../ReactPortal/ReactPortal";
-import UseHome from "../../../pages/Home/useHome";
 
-const Loader = () => {
-  const { loading } = UseHome();
+import ReactPortal from "../../ReactPortal/ReactPortal";
+import Spinner from "./Spinner";
+
+interface LoaderProps {
+  loading: boolean;
+}
+
+const Loader: React.FC<LoaderProps> = ({ loading }) => {
   if (!loading) return null;
 
   return (
     <>
       <ReactPortal containerId="loader-root">
         <Overlay>
-          <Spiner size={90} />
+          <Spinner size={90} />
         </Overlay>
       </ReactPortal>
     </>

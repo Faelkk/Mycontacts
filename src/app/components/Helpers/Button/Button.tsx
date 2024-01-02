@@ -1,8 +1,10 @@
 import React from "react";
 import { StyledButton } from "./Style";
 
-import Spiner from "../Loading/Spiner";
 import { ButtonProps } from "../../../../types/type";
+import Spinner from "../Loading/Spinner";
+
+
 
 const Button: React.FC<ButtonProps> = ({
   type,
@@ -20,7 +22,7 @@ const Button: React.FC<ButtonProps> = ({
         disabled={disabled || isLoading}
         onClick={onClick}
       >
-        {isLoading ? <Spiner size={24} /> : children}
+        {isLoading ? <Spinner size={24} /> : children}
       </StyledButton>
     </>
   );

@@ -1,4 +1,4 @@
-import { ChangeEvent, useMemo, useState } from "react";
+import { ChangeEvent,  useEffect,  useMemo, useState } from "react";
 
 import { handleDeleteContactById } from "../../../services";
 
@@ -6,7 +6,9 @@ import { toast } from "../../Utils/toast";
 import useApi from "../../../hooks/useApi";
 import { ContactsArray } from "../../../types/type";
 
+
 const useHome = () => {
+
   const [orderBy, setOrderBy] = useState("asc");
   const [searchTerms, setSearchTerms] = useState("");
   const { contacts, loading, error, FetchContacts, setContacts } =
@@ -53,7 +55,7 @@ const useHome = () => {
         await handleDeleteContactById(contactBeingDeleted.id);
 
       setContacts((prevState) =>
-        prevState.filter(
+        prevState?.filter(
           (contact: ContactsArray) => contact.id !== contactBeingDeleted?.id
         )
       );
@@ -62,18 +64,22 @@ const useHome = () => {
       toast({
         type: "success",
         text: "Contato deletado com sucesso",
-        duration: 5000,
       });
+
     } catch {
       toast({
         type: "danger",
         text: "ocorreu um erro ao deletar o contato",
-        duration: 5000,
       });
     } finally {
       setIsloadingDelete(false);
+  
     }
   };
+
+  useEffect(() => {
+    FetchContacts()
+  },[orderBy])
 
   return {
     filteredContacts,

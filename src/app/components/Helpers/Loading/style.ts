@@ -47,7 +47,7 @@ export const Overlay = styled.div`
   justify-content: center;
 `;
 
-export const StyledSpiner = styled.div<SpinnerProps>`
+export const StyledSpinner = styled.div<SpinnerProps>`
   color: var(--mainDefault);
   font-size: ${({ size }) => `${size}px`};
   width: 1em;

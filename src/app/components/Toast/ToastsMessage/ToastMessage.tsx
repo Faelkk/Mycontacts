@@ -5,7 +5,7 @@ import xCircleIcon from "../../../../assets/x-circle.svg";
 import checkCircleIcon from "../../../../assets/check-circle.svg";
 import { ToastMessageProps } from "../../../../types/type";
 
-[];
+
 
 const ToastMessage: React.FC<ToastMessageProps> = ({
   messageObject,

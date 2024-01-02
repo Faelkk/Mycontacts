@@ -2,7 +2,7 @@ import { createRef, useCallback, useEffect, useRef, useState } from "react";
 import { Message, Toast } from "../types/type";
 
 const useAnimatedList = () => {
-  const [pendingRemoveItemssId, setPendingRemoveItemsId] = useState<string[]>(
+  const [pendingRemoveItemsId, setPendingRemoveItemsId] = useState<string[]>(
     []
   );
   const [items, setItems] = useState<Message<Toast>[]>([]);
@@ -24,12 +24,12 @@ const useAnimatedList = () => {
   }, []);
 
   useEffect(() => {
-    pendingRemoveItemssId.forEach((itemId) => {
+    pendingRemoveItemsId.forEach((itemId) => {
       const animatedRef = animatedRefs.current.get(itemId);
       const animatedElement = animatedRef?.current;
-      const alreadyHasLiteners = animationEndListener.current.has(itemId);
+      const alreadyHasListeners = animationEndListener.current.has(itemId);
 
-      if (animatedElement && !alreadyHasLiteners) {
+      if (animatedElement && !alreadyHasListeners) {
         const onAnimationEnd = () => {
           handleAnimationEnd(itemId);
         };
@@ -41,7 +41,7 @@ const useAnimatedList = () => {
         animationEndListener.current.set(itemId, removeListener);
       }
     });
-  }, [pendingRemoveItemssId, handleAnimationEnd]);
+  }, [pendingRemoveItemsId, handleAnimationEnd]);
 
   useEffect(() => {
     const removeEventListeners = animationEndListener?.current;
@@ -66,7 +66,7 @@ const useAnimatedList = () => {
   const renderList = useCallback(
     (renderItem: any) => {
       return items.map((item) => {
-        const isLeaving = pendingRemoveItemssId.includes(item.id);
+        const isLeaving = pendingRemoveItemsId.includes(item.id);
         const animatedRef = getAnimatedRef(item.id);
 
         return renderItem(item, {
@@ -75,7 +75,7 @@ const useAnimatedList = () => {
         });
       });
     },
-    [items, pendingRemoveItemssId]
+    [items, pendingRemoveItemsId]
   );
 
   return {

@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, useImperativeHandle, useState } from "react";
+import { ChangeEvent, FormEvent, useEffect, useImperativeHandle, useState } from "react";
 import ValidateEmail from "../../Utils/ValidateEmail";
 import formatPhone from "../../Utils/formatPhone";
 
@@ -7,7 +7,7 @@ import { ContactsArrayWithCategoryId } from "../../../types/type";
 import useError from "../../../hooks/UseError";
 
 const useContactForm = (onSubmit: any, ref: any) => {
-  const { categoryFetch, loading } = useApi();
+  const { categoryFetch, loading,FetchCategories } = useApi();
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -18,6 +18,7 @@ const useContactForm = (onSubmit: any, ref: any) => {
 
   const { setError, removeError, getErrorMessageByFieldName, errors } =
     useError();
+
 
   const handleChangeName = (event: ChangeEvent<HTMLInputElement>) => {
     setName(event.target.value);
@@ -47,31 +48,36 @@ const useContactForm = (onSubmit: any, ref: any) => {
     event.preventDefault();
     setIsSubmitting(true);
     onSubmit && (await onSubmit({ name, email, phone, category }));
-   
+
     
     setIsSubmitting(false);
   };
 
-useImperativeHandle(ref, () => ({
-  setFieldsValue: (contact: ContactsArrayWithCategoryId) => {
-
+  useImperativeHandle(ref, () => ({
+    setFieldsValue: (contact: ContactsArrayWithCategoryId) => {
+  
+      
+      setName(contact.name ?? "");
+      setEmail(contact.email ?? "");
+      setPhone(formatPhone(contact.phone ?? ""));
+      if (contact.categoryId !== undefined && contact.categoryId !== null) {
+        setCategory(contact.categoryId);
+      }
+    },
     
-    setName(contact.name ?? "");
-    setEmail(contact.email ?? "");
-    setPhone(formatPhone(contact.phone ?? ""));
-    if (contact.categoryId !== undefined && contact.categoryId !== null) {
-      setCategory(contact.categoryId);
-    }
-  },
-  resetFields: () => {
-    setName("");
-    setEmail("");
-    setPhone("");
-    setCategory("");
-  },
-}));
+    resetFields: () => {
+      setName("");
+      setEmail("");
+      setPhone("");
+      setCategory("");
+    },
+  }));
+  
+  useEffect(() => {
+    FetchCategories()
+  },[])
 
-  const isFormValid = name && errors.length === 0;
+  const isFormValid = name && email && phone && category && errors.length === 0;
 
   return {
     name,

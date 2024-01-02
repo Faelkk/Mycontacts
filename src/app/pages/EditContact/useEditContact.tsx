@@ -17,10 +17,11 @@ const useEditContact = () => {
 
   useEffect(() => {
     id && fetchContactById(id);
-
-  }, []);
+  }, [id]);
   
   const handleSubmit = async (formData: FormInfo) => {
+  
+    
     try {
       const contact = {
         name: formData.name,
@@ -35,21 +36,22 @@ const useEditContact = () => {
         const contactData = await handleUpdateContacts(id, contact);
         setContactById(contactData);
      
-        
       }
 
       toast({
         type: "success",
         text: "contato editado com sucesso!",
-        duration: 5000,
       });
     } catch {
       toast({
         type: "danger",
         text: "Ocorreu um erro ao editado contato!",
-        duration: 5000,
+
       });
     }
+   finally {
+    navigate("/")
+   }
   };
 
   if (error) {
@@ -57,15 +59,16 @@ const useEditContact = () => {
     toast({
       type: "danger",
       text: "contato nao encontrado",
-      duration: 5000,
+  
     });
   }
 
   if (contactById && contactForm.current) {
-    contactForm.current.setFieldsValue(contactById);
 
+    contactForm.current.setFieldsValue(contactById);
     
   }
+
 
   return {
     loading,

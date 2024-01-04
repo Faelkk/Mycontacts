@@ -11,7 +11,6 @@ import ListHeadersHome from "./ListHeader/ListHeader";
 import CardCreate from "./components/Card/CardCreate";
 import useHome from "./useHome";
 import { ContactsArray } from "../../../types/type";
-import { useEffect } from "react";
 
 const Home = () => {
   const {
@@ -30,10 +29,6 @@ const Home = () => {
     handleConfirmDeleteClick,
     handleToggleOrderBy,
   } = useHome();
-
-  useEffect(() => {
-    console.log(contacts);
-  }, [contacts]);
 
   return (
     <Container>
@@ -71,7 +66,9 @@ const Home = () => {
 
           {contacts.length > 0 &&
             filteredContacts &&
-            filteredContacts.length < 1 && <ContactNotFound />}
+            filteredContacts.length < 1 && (
+              <ContactNotFound searchTerms={searchTerms} />
+            )}
 
           {filteredContacts && filteredContacts.length > 0 && (
             <ListHeadersHome

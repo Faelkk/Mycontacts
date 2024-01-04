@@ -4,10 +4,12 @@ import {
 } from "../EmptyList/Style";
 
 import magniferQuestion from "../../../../../assets/magnifier-question.svg";
-import useHome from "../../useHome";
 
-const ContactNotFound = () => {
-  const { searchTerms } = useHome();
+interface ContactNotFoundProps {
+  searchTerms: string;
+}
+
+const ContactNotFound = ({ searchTerms }: ContactNotFoundProps) => {
   return (
     <ContainerNotContactFound>
       <img src={magniferQuestion} alt="Magnifer question" />

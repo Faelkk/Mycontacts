@@ -1,11 +1,16 @@
 import { Link } from "react-router-dom";
 
 import { Header, TitleHeader } from "./Style";
-import useHome from "../../useHome";
 
-const HeaderHome = () => {
-  const { contacts, error, filteredContacts } = useHome();
+import { ContactsArray } from "../../../../../types/type";
 
+interface HeaderHomeProps {
+  contacts: ContactsArray[] | undefined;
+  error: boolean;
+  filteredContacts: ContactsArray[] | undefined;
+}
+
+const HeaderHome = ({ contacts, error, filteredContacts }: HeaderHomeProps) => {
   const alignment = error
     ? "flex-end"
     : contacts && contacts.length > 0

@@ -1,15 +1,15 @@
 import { ChangeEvent } from "react";
 import { Input } from "../../../../components/Helpers/InputsPage/InputPage";
-import useHome from "../../useHome";
 
-export interface InputSearchType {
+export interface InputSearchProps {
   searchTerms: string;
   handleChangeSearchTerm: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
-const InputSearch = () => {
-  const { searchTerms, handleChangeSearchTerm } = useHome();
-
+const InputSearch = ({
+  searchTerms,
+  handleChangeSearchTerm,
+}: InputSearchProps) => {
   return (
     <Input
       type="text"

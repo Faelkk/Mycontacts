@@ -1,27 +1,28 @@
-# React + TypeScript + Vite
+<!-- # My Contacts
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este projeto, desenvolvido durante o curso JStack, apresenta uma aplicação de gerenciamento de contatos que utiliza a minha API "mycontacts-api". Com esta aplicação, você pode facilmente salvar, editar, remover, ordenar,categorizar,pesquisar, seus contatos. Tudo isso é proporcionado através de uma interface simples e intuitiva, projetada para facilitar o uso.
 
-Currently, two official plugins are available:
+## 🛠️ Tecnologias
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+💻 **Front-end**
 
-## Expanding the ESLint configuration
+- [React](https://react.dev/)
+- [Typescript](https://www.typescriptlang.org)
+- [Vite](https://vitejs.dev/)
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+📚 **Bibliotecas**
 
-- Configure the top-level `parserOptions` property like this:
+- [react-router-dom](https://reactrouter.com/en/main)
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
+🎨 **Estilização**
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+- [styled-components](https://styled-components.com/)
+
+## Layout Web
+
+## Layout Mobile
+
+🔋 **Versionamento e Deploy**
+
+- [Git](https://git-scm.com)
+- [Vercel](https://vercel.com/) -->

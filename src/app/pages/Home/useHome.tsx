@@ -1,4 +1,4 @@
-import { ChangeEvent,  useEffect,  useMemo, useState } from "react";
+import { ChangeEvent, useEffect, useMemo, useState } from "react";
 
 import { handleDeleteContactById } from "../../../services";
 
@@ -6,9 +6,7 @@ import { toast } from "../../Utils/toast";
 import useApi from "../../../hooks/useApi";
 import { ContactsArray } from "../../../types/type";
 
-
 const useHome = () => {
-
   const [orderBy, setOrderBy] = useState("asc");
   const [searchTerms, setSearchTerms] = useState("");
   const { contacts, loading, error, FetchContacts, setContacts } =
@@ -40,7 +38,7 @@ const useHome = () => {
 
   const handleCancelClickModal = () => {
     setIsDeleteModalVisible(true);
-    setContactBeingDeleted(null)
+    setContactBeingDeleted(null);
   };
 
   const handleClickDeleteModal = (contact: ContactsArray) => {
@@ -65,7 +63,6 @@ const useHome = () => {
         type: "success",
         text: "Contato deletado com sucesso",
       });
-
     } catch {
       toast({
         type: "danger",
@@ -73,13 +70,12 @@ const useHome = () => {
       });
     } finally {
       setIsloadingDelete(false);
-  
     }
   };
 
   useEffect(() => {
-    FetchContacts()
-  },[orderBy])
+    FetchContacts();
+  }, [orderBy, FetchContacts]);
 
   return {
     filteredContacts,

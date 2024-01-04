@@ -11,9 +11,11 @@ import ListHeadersHome from "./ListHeader/ListHeader";
 import CardCreate from "./components/Card/CardCreate";
 import useHome from "./useHome";
 import { ContactsArray } from "../../../types/type";
+import { useEffect } from "react";
 
 const Home = () => {
   const {
+    orderBy,
     filteredContacts,
     contactBeingDeleted,
     isDeleteModalVisible,
@@ -21,15 +23,21 @@ const Home = () => {
     loading,
     error,
     isLoadingDelete,
+    searchTerms,
     handleCancelClickModal,
     handleClickDeleteModal,
+    handleChangeSearchTerm,
     handleConfirmDeleteClick,
+    handleToggleOrderBy,
   } = useHome();
 
-  
+  useEffect(() => {
+    console.log(contacts);
+  }, [contacts]);
+
   return (
     <Container>
-      <Loader loading={loading}/>
+      <Loader loading={loading} />
 
       <Modal
         isLoading={isLoadingDelete}
@@ -37,31 +45,39 @@ const Home = () => {
         title={contactBeingDeleted ? contactBeingDeleted.name : ""}
         onCancel={() => handleCancelClickModal()}
         onConfirm={() => handleConfirmDeleteClick()}
-        isModalVisible={isDeleteModalVisible} 
+        isModalVisible={isDeleteModalVisible}
       >
         <div className="modal-body">
           <ContentText>Essa ação não poderá ser desfeita!</ContentText>
         </div>
       </Modal>
 
-      <InputSearch />
+      <InputSearch
+        searchTerms={searchTerms}
+        handleChangeSearchTerm={handleChangeSearchTerm}
+      />
 
-      <HeaderHome />
+      <HeaderHome
+        contacts={contacts}
+        filteredContacts={filteredContacts}
+        error={error}
+      />
 
       {error && <ErrorStatus />}
 
-      
-        
-        {contacts && <> 
+      {contacts && (
+        <>
           {!loading && contacts?.length < 1 && <EmptyList />}
 
-
-          {contacts.length > 0 &&  filteredContacts && filteredContacts.length < 1 && (
-            <ContactNotFound />
-          )}
+          {contacts.length > 0 &&
+            filteredContacts &&
+            filteredContacts.length < 1 && <ContactNotFound />}
 
           {filteredContacts && filteredContacts.length > 0 && (
-            <ListHeadersHome />
+            <ListHeadersHome
+              orderBy={orderBy}
+              handleToggleOrderBy={handleToggleOrderBy}
+            />
           )}
 
           {filteredContacts &&
@@ -71,10 +87,9 @@ const Home = () => {
                 contact={contact}
                 handleClickDeleteModal={() => handleClickDeleteModal(contact)}
               />
-            ))}</>}
-      
-        
-      
+            ))}
+        </>
+      )}
     </Container>
   );
 };

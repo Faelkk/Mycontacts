@@ -1,10 +1,16 @@
 import arrow from "../../../../assets/arrow.svg";
 import { ListHeader } from "../components/Header/Style";
 import { BtnSort, SpanList, ImgArrow } from "./style";
-import useHome from "../useHome";
 
-const ListHeadersHome = () => {
-  const { orderBy, handleToggleOrderBy } = useHome();
+interface ListHeadersHomeProps {
+  orderBy: string;
+  handleToggleOrderBy: () => void;
+}
+
+const ListHeadersHome = ({
+  orderBy,
+  handleToggleOrderBy,
+}: ListHeadersHomeProps) => {
   return (
     <ListHeader>
       <BtnSort type="button" onClick={handleToggleOrderBy}>

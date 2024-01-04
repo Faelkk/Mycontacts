@@ -37,7 +37,7 @@ const useHome = () => {
   };
 
   const handleCancelClickModal = () => {
-    setIsDeleteModalVisible(true);
+    setIsDeleteModalVisible(false);
     setContactBeingDeleted(null);
   };
 

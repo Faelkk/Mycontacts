@@ -7,7 +7,7 @@ Este projeto, desenvolvido durante o curso JStack, apresenta uma aplicação de 
 💻 **Front-end**
 
 - [React](https://react.dev/): Escolhi usar React devido à sua popularidade, flexibilidade,reutilização de componentes e hooks, fazendo assim uma eficiência na construção de interfaces de usuário interativas.
-- [Typescript](https://www.typescriptlang.org): Usei Typescript para adicionar tipagem estática ao código, o que facilita a manutenção, previne erros e melhora a legibilidade.
+- [Typescript](https://www.typescriptlang.org): Usei Typescript para adicionar tipagem ao código, o que facilita a manutenção, previne erros e melhora a legibilidade.
 - [Vite](https://vitejs.dev/): Usei esse bundler pelos beneficios devido à sua rapidez no desenvolvimento e build, proporcionando uma experiência de desenvolvimento mais eficiente.
 
 📚 **Bibliotecas**
